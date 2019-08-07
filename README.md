@@ -27,11 +27,12 @@ The App uses a vuejs package called vuetifyJS. this package integrates Material 
  **Installation:**
  
  - clone or download the repo [https://github.com/towfiles/image-list-vue](https://github.com/towfiles/image-list-vue)
- - open dist/index.html file. this is the bundled and compiled production file
- - to run the app in development mode follow the below process
+ - to run the app in development mode and production build then follow the below process
 		 - make sure you have npm installed
-		 - in the root directory run `npm install` to download and the modules in package.json file
-		 - after the packages have been successfully installed then run `npm run serve` this will start the development mode and create a server after compliation. The terminal will show the localhost and network url to access the application
+		 - in the root directory run `npm install` to download the modules in package.json file
+		 - after the packages have been successfully installed then run `npm run serve` this will start the development mode and create a server after compilation. The terminal will show the localhost and network url to access the application	 
+         - exec `npm run build` to run a production build
+         - open dist/index.html file. this is the bundled and compiled production file
 
 **Suggestions:**
 
