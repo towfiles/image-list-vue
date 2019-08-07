@@ -19,10 +19,10 @@
                             label
                     >
                         <v-icon left>mdi-account-circle-outline</v-icon>
-                        <span class="author-name">{{image.author}}</span>
+                        <span class="image-author-name">{{image.author}}</span>
                     </v-chip>
 
-                    <v-chip style="float: right;">#{{image.id}}</v-chip>
+                    <v-chip class="image-id">#{{image.id}}</v-chip>
 
 
                 </v-card-text>
@@ -56,14 +56,18 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
-    .image-card .author-name{
-        max-width: 150px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-
+    .image-card {
+        .image-author-name {
+            max-width: 150px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .image-id {
+            float: right;
+        }
     }
 
 </style>

@@ -1,7 +1,7 @@
 <template>
     <v-layout justify-center>
-        <v-dialog  style="z-index: 1000" v-model="dialog" width="100%">
-            <v-card>
+        <v-dialog style="z-index: 1000" v-model="dialog" width="100%">
+            <v-card class="iframe-dialog" >
                 <v-app-bar class="light-green white--text">
 
                     <v-toolbar-title>
@@ -55,18 +55,19 @@
 
 </script>
 
-<style scoped>
+<style scoped  lang="scss">
 
-    .iframe-dialog-wrapper{
-        height: 100vh;
-        overflow: scroll;
-    }
-
-    .iframe-dialog-wrapper iframe {
-        width:100%;
-        height: 2000px;
-        border: 0;
-        pointer-events: none;
+    .iframe-dialog {
+        .iframe-dialog-wrapper {
+            height: 100vh;
+            overflow: scroll;
+            iframe {
+                width: 100%;
+                height: 2000px;
+                border: 0;
+                pointer-events: none;
+            }
+        }
     }
 
 

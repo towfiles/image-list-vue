@@ -2,7 +2,7 @@
 
     <v-card
             width="100%"
-            class="mx-auto"
+            class="mx-auto paginator"
     >
 
 
@@ -102,24 +102,21 @@
     }
 </script>
 
-<style>
+<style  lang="scss">
 
     .v-input__slot {
         min-height: 40px !important;
     }
-
-    .pagination-text-field {
-        height: 40px;
-        margin: 10px
-
+    .paginator {
+        .pagination-text-field {
+            height: 40px;
+            margin: 10px;
+        }
+        .page-change {
+            .button-label {
+                margin: 10px;
+            }
+        }
     }
-
-    .page-change .button-label{
-        margin: 10px
-
-    }
-
-
-
 
 </style>
