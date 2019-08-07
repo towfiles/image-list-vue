@@ -1,16 +1,16 @@
 <template>
 
     <v-layout
-        align-center
-        justify-center
-        row
-        fill-height
+            align-center
+            justify-center
+            row
+            fill-height
     >
         <div
-            v-for="image in imagesData"
-            v-bind:key="image.id"
+                v-for="image in imagesData"
+                v-bind:key="image.id"
         >
-            <ImageCard :image="image" />
+            <ImageCard :image="image"/>
 
         </div>
     </v-layout>

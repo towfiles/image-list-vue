@@ -33,7 +33,10 @@
                             absolute
                             color="#036358"
                     >
-                        <v-btn x-large ><v-icon>open_in_new</v-icon> Open </v-btn>
+                        <v-btn x-large>
+                            <v-icon>open_in_new</v-icon>
+                            Open
+                        </v-btn>
 
                     </v-overlay>
                 </v-fade-transition>
@@ -45,13 +48,14 @@
 
 <script>
     import {appEventBus} from '../main';
+
     export default {
         name: "ImageCard",
         props: ['image'],
         methods: {
-            getImageDownloadLink : (url, id, width, height) => `${url}/id/${id}/${width}/${height}`,
+            getImageDownloadLink: (url, id, width, height) => `${url}/id/${id}/${width}/${height}`,
 
-            openImageUrl : imageUrl => appEventBus.$emit('openImageUrl', imageUrl)
+            openImageUrl: imageUrl => appEventBus.$emit('openImageUrl', imageUrl)
         },
     }
 </script>

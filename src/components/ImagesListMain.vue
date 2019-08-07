@@ -8,10 +8,10 @@
                     :pageNumber="currentPage"
             />
 
-            <ImageGrid :imagesData="imagesData" />
+            <ImageGrid :imagesData="imagesData"/>
         </v-layout>
 
-        <Loader :show="showLoader" />
+        <Loader :show="showLoader"/>
 
         <IframeDialog
                 :showDialog="showDialog"
@@ -37,10 +37,10 @@
         name: "ImagesListMain",
         components: {Loader, IframeDialog, Paginator, ImageGrid},
         data: () => ({
-            imageList : [],
+            imageList: [],
             imagesData: [],
             pagesLink: [],
-            currentPage : 1,
+            currentPage: 1,
             showLoader: true,
             dialogUrl: '',
             showDialog: false,
@@ -56,8 +56,8 @@
             this.loadImages();
 
         },
-        methods :{
-            parseLinkHeader : (header) => {
+        methods: {
+            parseLinkHeader: (header) => {
                 const linkExp = /<[^>]*>\s*(\s*;\s*[^\(\)<>@,;:"\/\[\]\?={} \t]+=(([^\(\)<>@,;:"\/\[\]\?={} \t]+)|("[^"]*")))*(,|$)/g // eslint-disable-line
                 const paramExp = /[^\(\)<>@,;:"\/\[\]\?={} \t]+=(([^\(\)<>@,;:"\/\[\]\?={} \t]+)|("[^"]*"))/g // eslint-disable-line
 
@@ -82,33 +82,32 @@
                 return results
             },
 
-            updateImageListAndPagesLink(responseData){
+            updateImageListAndPagesLink(responseData) {
 
                 this.imageList = this.imagesData = responseData.data;
                 this.pagesLink = this.parseLinkHeader(responseData.headers.link);
 
             },
 
-            onPageChange(){
+            onPageChange() {
                 appEventBus.$on('changePage', (pageChangeType) => {
                     let url;
                     let pageNumber = this.currentPage;
 
-                    if(pageChangeType === 'next' && this.pagesLink.next !== undefined){
-                        url =  this.pagesLink.next;
+                    if (pageChangeType === 'next' && this.pagesLink.next !== undefined) {
+                        url = this.pagesLink.next;
                         pageNumber++;
                     }
-                    else if(pageChangeType === 'prev' && this.pagesLink.prev !== undefined){
-                        url =  this.pagesLink.prev;
+                    else if (pageChangeType === 'prev' && this.pagesLink.prev !== undefined) {
+                        url = this.pagesLink.prev;
                         pageNumber--;
                     }
-                    else{
-                        return ;
+                    else {
+                        return;
                     }
 
                     this.showLoader = true;
-                    RepositoryFactory.get('images').getImagesListFromUrl(url).
-                        then((response) => {
+                    RepositoryFactory.get('images').getImagesListFromUrl(url).then((response) => {
                         this.updateImageListAndPagesLink(response);
                         this.currentPage = pageNumber;
                         this.showLoader = false;
@@ -123,7 +122,7 @@
 
             },
 
-            onOpenImageUrl(){
+            onOpenImageUrl() {
                 appEventBus.$on('openImageUrl', (imageUrl) => {
                     this.dialogUrl = imageUrl;
                     this.showDialog = true;
@@ -134,7 +133,7 @@
 
             },
 
-            onItemsPerPageChange(){
+            onItemsPerPageChange() {
                 appEventBus.$on('getItemsPerPage', (itemsPerPage) => {
                     this.showLoader = true;
                     this.loadImages(this.currentPage, itemsPerPage);
@@ -142,13 +141,13 @@
 
             },
 
-            onFilterByAuthor(){
+            onFilterByAuthor() {
                 appEventBus.$on('filterByAuthor', (authorName) => {
                     this.imagesData = this.imageList.filter((image) => {
                         return authorName.toLowerCase().split(' ').every(v => image.author.toLowerCase().includes(v));
                     });
 
-                    if(authorName === ''){
+                    if (authorName === '') {
                         this.imagesData = this.imageList;
 
                     }
@@ -156,10 +155,9 @@
 
             },
 
-            loadImages(page = 1, itemsPerPage = this.defaultItemsPerPage){
+            loadImages(page = 1, itemsPerPage = this.defaultItemsPerPage) {
 
-                RepositoryFactory.get('images').getImagesList(page, itemsPerPage).
-                then((response) => {
+                RepositoryFactory.get('images').getImagesList(page, itemsPerPage).then((response) => {
                     this.updateImageListAndPagesLink(response);
                     this.showLoader = false;
                     this.registerEventListeners();
@@ -172,14 +170,12 @@
 
             },
 
-            registerEventListeners(){
+            registerEventListeners() {
                 this.onPageChange();
                 this.onOpenImageUrl();
                 this.onItemsPerPageChange();
                 this.onFilterByAuthor();
             }
-
-
 
 
         }
